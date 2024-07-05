@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primaryColor: "rgb(99, 102, 241)",
-        secondaryColor: "rgb(161, 163, 247)",
+        primaryColor: "#c1121f",
+        secondaryColor: "#e63946",
         primaryText: "rgb(255,255,255)",
         secondaryText: "rgb(174, 178, 183)",
         bgDark1: "rgb(31, 32, 35)",
@@ -29,7 +29,7 @@ module.exports = {
         lg: "1024px",
         xl: "1280px",      
         "2xl": "1536px",
-      },
+      }
     },
   },
 };

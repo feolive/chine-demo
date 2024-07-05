@@ -5,11 +5,11 @@ import { TailcastLogo } from "../assets/logos/TailcastLogo";
 import { GithubIcon } from "../assets/icons/GithubIcon";
 
 const navbarLinks = [
-  { label: "Home", href: "/#home", ariaLabel: "Home" },
-  { label: "Features", href: "/#features", ariaLabel: "Features" },
-  { label: "Pricing", href: "/#pricing", ariaLabel: "Pricing" },
+  { label: "Food", href: "/#home", ariaLabel: "Home" },
+  { label: "Shop", href: "/#features", ariaLabel: "Features" },
+  { label: "Rewards", href: "/#pricing", ariaLabel: "Pricing" },
   { label: "Feedback", href: "/#feedback", ariaLabel: "Feedback" },
-  { label: "FAQ", href: "/#FAQ", ariaLabel: "FAQ" },
+  { label: "About Us", href: "/#FAQ", ariaLabel: "FAQ" },
 ];
 
 export const Navbar = () => {
@@ -17,7 +17,7 @@ export const Navbar = () => {
 
   return (
     <nav
-      className="w-full h-20 flex flex-col justify-center items-center fixed bg-bgDark1 lg:bg-bgDarkTransparent z-40 lg:backdrop-blur-xl"
+      className="w-full h-20 flex flex-col justify-center items-center fixed bg-bgDark1 lg:bg-bgDarkTransparent z-40 lg:backdrop-blur-xl "
       aria-label="Main navigation"
     >
       <div className="2xl:w-[1280px] xl:w-10/12 w-11/12 flex justify-between items-center relative">
@@ -32,8 +32,8 @@ export const Navbar = () => {
               <div className="text-white mr-2 text-6xl">
                 <TailcastLogo />
               </div>
-              <div className="text-white font-['Inter'] font-bold text-xl">
-                Tailcast
+              <div className="text-primaryColor font-['Inter'] font-bold text-xl">
+                Chine秦妈
               </div>
             </div>
           </a>
@@ -67,12 +67,12 @@ export const Navbar = () => {
             <a
               className="text-white main-border-gray rounded-xl
            bg-bgDark2 hover:bg-bgDark3  border-gray-700 pl-6 pr-8 pt-2 pb-2 text-sm flex"
-              href="https://github.com/matt765/Tidestream"
+              href="#"
               target="_blank"
               aria-label="source code"
             >
               <GithubIcon />
-              <span className="pt-px">Source code</span>
+              <span className="pt-px font-bold">Find Your 秦妈</span>
             </a>
           </div>
         </motion.div>

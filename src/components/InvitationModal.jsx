@@ -68,7 +68,7 @@ export const InvitationModal = ({ setIsOpen }) => (
                 </div>
                 <div className="w-full sm:w-4/5 p-2 mt-4 mx-auto">
                   <button
-                    className="py-4 px-6 w-full text-primaryText font-semibold rounded-xl shadow-4xl focus:ring focus:ring-indigo-300 bg-primaryColor hover:bg-[#7274f3] transition ease-in-out duration-200"
+                    className="py-4 px-6 w-full text-primaryText font-semibold rounded-xl shadow-4xl focus:ring focus:ring-red-400 bg-primaryColor hover:bg-[#e63946] transition ease-in-out duration-200"
                     type="button"
                     aria-label="Join now"
                   >

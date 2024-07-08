@@ -2,7 +2,6 @@ import { useState } from "react";
 import { backIn, motion } from "framer-motion";
 
 import { InvitationModal } from "./InvitationModal";
-import { z } from "astro:content";
 
 export const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,6 +10,7 @@ export const Hero = () => {
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
+    opacity: 0.5
   };
 
 
@@ -30,10 +30,11 @@ export const Hero = () => {
           </h3>
         </motion.div>
         <motion.div
+          className="hero-bg-image"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          style={backgroundImg}
+          transition={{ duration: 2, delay: 0.05 }}
+          // style={backgroundImg}
         >
           <div className="text-5xl sm:text-6xl lg:text-7xl xl:text-7xl font-bold tracking-wide  text-primaryText  px-8 sm:px-8 md:px-20 lg:px-4">
             <h1 className="inline md:hidden">Chine Legendary</h1>
@@ -56,7 +57,6 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          // style={{height: "10rem"}}
         >
           <div className="flex flex-col gap-2 sm:flex-row mt-14 mb-14 sm:mb-40 justify-center">
             <button

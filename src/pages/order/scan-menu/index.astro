@@ -1,0 +1,12 @@
+---
+import Layout from '../../../layouts/Layout.astro'
+import {Card} from '../../../components/Card.jsx'
+import '../../../styles/Theme.css'
+import '../../../styles/Diagonals.css'
+---
+
+<Layout title="Scan Menu">
+    <h1>Scan Menu</h1>
+    <p>Scan the QR code to view the menu</p>
+  <Card client:load/>
+</Layout>

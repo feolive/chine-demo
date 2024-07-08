@@ -32,7 +32,7 @@
 /* Buttons */
 
 .contained-button {
-  @apply rounded-lg font-bold bg-primaryColor text-primaryText flex justify-center items-center hover:bg-[#e63946] cursor-pointer transition;
+  @apply rounded-lg font-bold bg-primaryColor text-primaryText flex justify-center items-center hover:bg-secondaryColor cursor-pointer transition;
 }
 .outlined-button {
   @apply text-primaryText main-border-gray rounded-xl bg-bgDark2 hover:bg-bgDark3  border-gray-700 text-sm;
@@ -41,4 +41,9 @@
 /* Preventing FOUC */
 @font-face {
   font-display: var(--fontsource-Inter-font-display, optional);
+}
+
+
+.hero-bg-image {
+  @apply bg-hotpot rounded-xl drop-shadow-[0_15px_30px_red];
 }

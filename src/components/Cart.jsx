@@ -1,6 +1,21 @@
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { CheckArrowIcon } from "../assets/icons/CheckArrowIcon";
+import { CloseIcon } from "../assets/icons/CloseIcon";
 
 export const Cart = (order) => {
+
+  const [items, setItems] = useState(order)
+
+  const reduceItem = (key) => {
+    if (items[key].amount === 0) {
+        delete items[key]
+    }
+    items[key].amount = items[key].amount - 1
+    items.totalAmount = items.totalAmount - 1
+    setItems({items})
+  }
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -14,18 +29,20 @@ export const Cart = (order) => {
             Order List
           </h3>
           <div className="grid grid-cols-1 gap-2">
-            {Object.keys(order).map((key) => {
+            {Object.keys(items).map((key) => {
               if (key === "totalAmount") {
                 return null;
               }
               return (
                 <div key={key} className="flex justify-between items-center">
+                  {totalAmount===0? <CloseIcon className="mr-1" onClick={reduceItem(key)} /> : <CheckArrowIcon className="mr-1" />} 
                   <p className="text-primaryText text-left">
-                    {order[key].name} -  ${order[key].price}
+                    {items[key].name} -  ${items[key].price}
                   </p>
                   <p className="text-primaryText text-left ml-4">
-                    x{order[key].amount} = ${order[key].price * order[key].amount}
+                    x{items[key].amount} = ${items[key].price * items[key].amount}
                   </p>
+                  
                 </div>
               );
             })}

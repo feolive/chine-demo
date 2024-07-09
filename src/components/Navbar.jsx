@@ -17,7 +17,7 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={"w-full h-20 flex flex-col justify-center items-center fixed bg-bgDark1 lg:bg-bgDarkTransparent z-40 lg:backdrop-blur-xl shadow-lg shadow-red-300"}
+      className={"w-full h-20 flex flex-col justify-center items-center fixed bg-bgDark1 lg:bg-bgDarkTransparent z-40 backdrop-blur shadow-lg shadow-red-300"}
       aria-label="Main navigation"
     >
       <div className="2xl:w-[1280px] xl:w-10/12 w-11/12 flex justify-between items-center relative">

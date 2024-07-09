@@ -1,7 +1,10 @@
+import { useState, useEffect } from "react";
 import {MenuItem} from "./MenuItem";
+import { motion } from "framer-motion";
 
-export const Menu = () => {
-  const foodData = [
+
+export const Menu = (foodData, order) => {
+  const pseudoFoodData = [
     {
       id: "c1",
       category: "Noodles",
@@ -105,29 +108,57 @@ export const Menu = () => {
     },
   ];
 
-  const order = {
+  const pseudoOrder = {
     totalAmount: 0,
-    1 : 0,
-    2 : 0,
-    3 : 0,
-    5 : 0,
+    1 : {
+      amount: 0,
+      name: "",
+      price: 0,
+    },
+    2 : {
+      amount: 0,
+      name: "",
+      price: 0,
+    },
+    3 : {
+      amount: 0,
+      name: "",
+      price: 0,
+    },
+    5 : {
+      amount: 0,
+      name: "",
+      price: 0,
+    },
   };
 
+  const [selectedTab, setSelectedTab] = useState(foodData[0]);
+  const [order, setOrder] = useState(pseudoOrder);
+  const [foodData, setFoodData] = useState(pseudoFoodData);
+
   return (
+    <motion.div 
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+    >
     <div className="menu w-screen sm:max-w-sm h-[720px] flex justify-start bg-bgDark2 relative mx-auto ">
-      {/* left column bar */}
-      <nav>
+      
+      <nav className="overflow-auto">
         <ul className="flex flex-col justify-start">
           {
             foodData.map((item, index) => (
-              <li className="rounded-lg" key={item.id}>
+              <li className="rounded-lg" key={item.id} 
+              onClick={() => setSelectedTab(item)}
+              >
                 {item.icon} {item.category}
               </li>
             ))
           }
         </ul>
       </nav>
-      {/* right container area */}
+      <MenuItem selectedTab={selectedTab} order={order} />
     </div>
+    </motion.div>
   );
 };

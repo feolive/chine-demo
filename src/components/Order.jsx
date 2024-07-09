@@ -32,13 +32,12 @@ export const Order = () => {
         >
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center mb-16">
-              <span className="block-subtitle">Find Your Perfect Fit</span>
+              <span className="block-subtitle">Find Your Perfect Meal</span>
               <h2 className="mt-6 mb-6 text-4xl lg:text-5xl font-bold font-heading text-primaryText">
-                Choose your best plan
+                Your Flavor World
               </h2>
               <p className="mb-6 text-secondaryText">
-                Select the plan that suits your needs and benefit from our
-                analytics tools.
+                Select the food that suits your apetiite and enjoy the meal.
               </p>
               <label className="mx-auto bg-bgDark3 relative flex justify-between items-center group text-xl w-44 h-12 rounded-lg pr-36 pl-1 cursor-pointer">
                 <input
@@ -51,12 +50,12 @@ export const Order = () => {
                 <div className="flex absolute text-primaryText text-sm font-bold">
                   <div
                     className={
-                      isMonthly ? "mr-9 ml-3" : "mr-9 ml-3 text-gray-400"
+                      isMonthly ? "mr-14 ml-5" : "mr-14 ml-5 text-gray-400"
                     }
                   >
-                    Monthly
+                    Menu
                   </div>
-                  <div className={isMonthly ? "text-gray-400" : ""}>Yearly</div>
+                  <div className={isMonthly ? "text-gray-400" : ""}>Cart</div>
                 </div>
               </label>
             </div>

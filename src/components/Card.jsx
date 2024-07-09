@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export const MenuItem = (food,order) => {
 
-  const [amount, setAmount] = useState(()=>{order[food.id]?order[food.id]:0});
+  const [amount, setAmount] = useState(()=>{order[food.id].amount?order[food.id].amount:0});
 
   const increaseAmount = (step) => {
     setAmount(amount + step);
@@ -18,7 +18,10 @@ export const MenuItem = (food,order) => {
   };
 
   useEffect(() => {
-    order.totalAmount = amount;
+    order.totalAmount = order.totalAmount + amount;
+    order[food.id].amount = amount;
+    order[food.id].name = food.name;
+    order[food.id].price = food.price;
   }, [amount]);
 
   return (

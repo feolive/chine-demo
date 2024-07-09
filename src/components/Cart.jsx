@@ -26,6 +26,7 @@ export const Cart = ({order, updateTotalAmount}) => {
   return (
     <AnimatePresence mode="wait">
       <motion.div
+        className="h-full"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -34,16 +35,15 @@ export const Cart = ({order, updateTotalAmount}) => {
         <h3 className="mb-4 text-xl font-bold font-heading text-primaryText text-center">
             Order List
           </h3>
-        <div className="w-[300px] sm:w-[480px] flex flex-col justify-start mx-auto overflow-auto">
+        <div className="w-[300px] sm:w-[480px] flex flex-col justify-start gap-3 mx-auto overflow-auto">
           
             {Object.keys(items).map((key) => {
               if (key === "totalAmount") {
                 return null;
               }
               return (
-                <div key={key} className="flex justify-start items-center gap-2">
-                  {/* {items[key].amount===0? (<label className="mr-4 h-5 w-5 text-secondaryColor flex justify-center content-center" onClick={()=>reduceItem(key)} ><CloseIcon /></label>) : (<div className="ml-2 h-5 w-5 flex justify-center content-center" onClick={()=>reduceItem(key)} ><CheckArrowIcon  /></div>)}  */}
-                  <p className="text-primaryText text-left ml-4 mr-20 w-[150px]">
+                <div key={key} className="flex justify-start items-center outline-none p-3 rounded-lg border-bgDark3 bg-bgDark3 hover:bg-bgDark3Hover">
+                  <p className="text-primaryText text-left ml-4 mr-20 w-[90px] sm:w-[150px]">
                     {items[key].name} -  ${items[key].price}
                   </p>
                   <p className="text-primaryText text-left mr-2 w-[50px]">

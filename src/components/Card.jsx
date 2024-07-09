@@ -3,7 +3,7 @@ import { MinusIcon } from "../assets/icons/MinusIcon";
 import { PlusIcon } from "../assets/icons/PlusIcon";
 import { motion } from "framer-motion";
 
-export const MenuItem = (food, order) => {
+export const MenuItem = ({food, order}) => {
   const [amount, setAmount] = useState(() => {
     order[food.id].amount ? order[food.id].amount : 0;
   });

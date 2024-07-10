@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 import { InvitationModal } from "./InvitationModal";
 import { CheckArrowIcon } from "../assets/icons/CheckArrowIcon";
-// import { Menu } from "./Menu";
+import { Menu } from "./Menu";
 import { Cart } from "./Cart";
 
 const pricingData = [
@@ -16,10 +16,10 @@ const pricingData = [
 
 const newOrder = {
   totalAmount: 0,
-  1 : {
+  10 : {
     amount: 1,
-    name: "",
-    price: 5,
+    name: "Spicy Pot (麻辣香锅)",
+    price: 24.99,
   },
   2 : {
     amount: 0,
@@ -36,25 +36,25 @@ const newOrder = {
     name: "",
     price: 0,
   },
-  6 : {
-    amount: 0,
-    name: "Beef Noodles tttttt(红烧牛肉面)",
+  1 : {
+    amount: 1,
+    name: "Beef Noodles (红烧牛肉面)",
     price: 10,
-  },
-  13 : {
-    amount: 0,
-    name: "蛋炒饭",
-    price: 7.9,
   },
   9 : {
-    amount: 0,
-    name: "xiaolongbao (小笼包)",
-    price: 10,
+    amount: 1,
+    name: "Borsch (罗宋汤)",
+    price: 11.99,
+  },
+  6 : {
+    amount: 2,
+    name: "Coke (可乐)",
+    price: 1.99,
   },
   7 : {
-    amount: 0,
-    name: "火锅-鸳鸯锅底",
-    price: 19.99,
+    amount: 1,
+    name: "Sprite (雪碧)",
+    price: 1.99,
   },
 };
 
@@ -218,7 +218,12 @@ export const Order = () => {
               // isMonthly ? (<Menu dishes={dishes} newOrder={newOrder} countNewOrder={countNewOrder} />) : 
               // (<Cart order={newOrder} />)
             }
-            <Cart order={newOrder} updateTotalAmount={countNewOrder} />
+            {
+              isMonthly ? (<Menu dishes={dishes} order={newOrder} updateTotalAmount={countNewOrder} />) : 
+                (<Cart order={newOrder} updateTotalAmount={countNewOrder} />)
+            }
+            
+            
             
           </div>
         </motion.div>

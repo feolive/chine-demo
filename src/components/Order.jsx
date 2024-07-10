@@ -36,6 +36,26 @@ const newOrder = {
     name: "",
     price: 0,
   },
+  6 : {
+    amount: 0,
+    name: "Beef Noodles tttttt(红烧牛肉面)",
+    price: 10,
+  },
+  13 : {
+    amount: 0,
+    name: "蛋炒饭",
+    price: 7.9,
+  },
+  9 : {
+    amount: 0,
+    name: "xiaolongbao (小笼包)",
+    price: 10,
+  },
+  7 : {
+    amount: 0,
+    name: "火锅-鸳鸯锅底",
+    price: 19.99,
+  },
 };
 
 const dishes = [

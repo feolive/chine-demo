@@ -11,7 +11,7 @@ export const MenuItem = ({ selectedTab, order }) => {
         exit={{ y: -10, opacity: 0 }}
         transition={{ duration: 0.2 }}
       >
-        <section className="w-auto h-[500px] p-1 grid grid-cols-3 gap-3  overflow-auto">
+        <section className="h-[500px] grid grid-cols-3 gap-5 px-6 scroll-bar">
           {selectedTab["data"].map((food) => (
             <Card food={food} order={order} />
           ))}

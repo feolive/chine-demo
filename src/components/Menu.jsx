@@ -19,8 +19,8 @@ export const Menu = ({ dishes, order, updateTotalAmount }) => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="menu w-[400px] sm:w-[720px] flex justify-start gap-3 relative mx-auto p-2">
-          <nav className="overflow-auto">
+        <div className="w-[400px] sm:w-full flex justify-start gap-3 relative mx-auto">
+          <nav className="w-28 mt-8 scroll-bar">
             <ul className="flex flex-col justify-start list-none">
               {dishes.map((item) => (
                 <li

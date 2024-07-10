@@ -35,7 +35,7 @@ export const Card = ({ food, order }) => {
 
   return (
     <motion.div
-      initial={{ rotate: -5 }}
+      initial={{ rotate: -10 }}
       whileInView={{
         rotate: 0,
         transition: { type: "spring", bounce: 0.4, duration: 0.8 },
@@ -44,23 +44,23 @@ export const Card = ({ food, order }) => {
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        whileHover={{ scale: 1.2 }}
+        whileHover={{ scale: 1.1 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="w-[250px] sm:w-[300px] h-[450px] px-4 mb-4 flex flex-col justify-start content-center gap-3 bg-bgDark3 rounded-3xl">
-          <div className="flex flex-col justify-start content-center gap-3">
-            <img className="h-10 w-10 sm:h-11 sm:w-11 mb-2" src={food.src} />
-            <p className="mt-2 text-primaryText text-left">{food.name} </p>
-            <p className="mt-4 mb-6 2xl:mb-10 text-gray-500 leading-loose text-left">
+        <div className="w-[250px] sm:w-[300px] h-auto px-2 mt-4 flex flex-col justify-start content-center gap-3 bg-bgDark3 rounded-3xl">
+          <div className="flex flex-col justify-start gap-3 items-center mt-6">
+            <img className="h-10 w-10 sm:h-28 sm:w-28 mb-2" src={food.src} />
+            <label className="text-primaryText text-left">{food.name} </label>
+            <p className="w-[220px] h-[120px] mt-2 mb-6 2xl:mb-10 text-sm text-gray-500 leading-loose text-left overflow-hidden">
               {food.desc}
             </p>
           </div>
-          <div className="flex justify-start ">
-            <div className="text-2xl sm:text-3xl font-bold text-primaryText text-left mt-2 mr-4">
+          <div className="flex justify-start items-center gap-1 ml-2 mb-6">
+            <div className="text-2xl sm:text-3xl font-bold text-primaryText text-left">
               ${food.price}
             </div>
             <motion.div
-              className="mr-2"
+              className="ml-6"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               whileHover={{ scale: 1.2 }}
@@ -70,8 +70,9 @@ export const Card = ({ food, order }) => {
               <MinusIcon />
             </motion.div>
             <input
-              className="w-12 mx-1 text-center outline-none border bg-gray-200 border-gray-200 rounded-sm"
+              className="w-14 h-6 mx-1 text-center outline-none border bg-gray-200 border-gray-200 rounded-sm"
               value={amount}
+              type="text"
             />
             <motion.div
               className="mr-2"

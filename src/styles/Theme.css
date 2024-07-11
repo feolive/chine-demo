@@ -43,9 +43,22 @@
   font-display: var(--fontsource-Inter-font-display, optional);
 }
 
-
+/* spotlight the background image */
 .hero-bg-image {
-  @apply bg-hotpot rounded-xl drop-shadow-[0_15px_30px_red];
+  @apply bg-hotpot bg-cover bg-center bg-no-repeat ;
+}
+
+.hero-bg-shade {
+  @apply w-auto h-auto bg-bgDark1 mix-blend-multiply;
+}
+
+.hero-bg-spotlight {
+  
+  @apply w-32 h-32  rounded-full mix-blend-lighten pointer-events-none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle at var(--x) var(--y), yellow 10%, white 80%);
 }
 
 /* scroll bar */
@@ -90,3 +103,4 @@
 .nav-tabs>li.selected {
   @apply bg-secondaryText
 }
+

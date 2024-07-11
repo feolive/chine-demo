@@ -2,7 +2,6 @@ import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 
 import { InvitationModal } from "./InvitationModal";
-import { CheckArrowIcon } from "../assets/icons/CheckArrowIcon";
 import { Menu } from "./Menu";
 import { Cart } from "./Cart";
 
@@ -215,16 +214,9 @@ export const Order = () => {
               </label>
             </div>
             {
-              // isMonthly ? (<Menu dishes={dishes} newOrder={newOrder} countNewOrder={countNewOrder} />) : 
-              // (<Cart order={newOrder} />)
-            }
-            {
               isMonthly ? (<Menu dishes={dishes} order={newOrder} updateTotalAmount={countNewOrder} />) : 
                 (<Cart order={newOrder} updateTotalAmount={countNewOrder} />)
             }
-            
-            
-            
           </div>
         </motion.div>
       </div>

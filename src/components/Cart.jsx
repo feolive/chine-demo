@@ -77,6 +77,7 @@ export const Cart = ({ order, updateTotalAmount }) => {
                   className="w-12 mx-1 text-center outline-none border bg-gray-200 border-gray-200 rounded-sm z-50"
                   value={items[key].amount}
                   type="text"
+                  readOnly
                 />
                 <motion.div
                   initial={{ scale: 0 }}

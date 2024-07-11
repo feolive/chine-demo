@@ -4,9 +4,9 @@ import { PlusIcon } from "../assets/icons/PlusIcon";
 import { motion } from "framer-motion";
 
 export const Card = ({ food, order }) => {
-  const [amount, setAmount] = useState(() => {
-    order[food.id] ? order[food.id].amount : 0;
-  });
+  const [amount, setAmount] = useState(() =>
+    order[food.id] ? order[food.id].amount : 0
+  );
 
 
   const increaseAmount = (step) => {
@@ -65,7 +65,7 @@ export const Card = ({ food, order }) => {
               animate={{ scale: 1 }}
               whileHover={{ scale: 1.2 }}
               transition={{ duration: 0.2 }}
-              onClick={() => decreaseAmount(1)}
+              onClick={(e) => decreaseAmount(1)}
             >
               <MinusIcon />
             </motion.div>
@@ -73,6 +73,7 @@ export const Card = ({ food, order }) => {
               className="w-14 h-6 mx-1 text-center outline-none border bg-gray-200 border-gray-200 rounded-sm"
               value={amount}
               type="text"
+              readOnly
             />
             <motion.div
               className="mr-2"
@@ -80,7 +81,7 @@ export const Card = ({ food, order }) => {
               animate={{ scale: 1 }}
               whileHover={{ scale: 1.2 }}
               transition={{ duration: 0.2 }}
-              onClick={() => increaseAmount(1)}
+              onClick={(e) => increaseAmount(1)}
             >
               <PlusIcon />
             </motion.div>

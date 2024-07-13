@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MinusIcon } from "../assets/icons/MinusIcon";
 import { PlusIcon } from "../assets/icons/PlusIcon";
 import { motion } from "framer-motion";
@@ -8,30 +8,28 @@ export const Card = ({ food, order }) => {
     order[food.id] ? order[food.id].amount : 0
   );
 
-
   const increaseAmount = (step) => {
-    setAmount(amount + step);
+    updateOrder(step);
   };
 
   const decreaseAmount = (step) => {
-    if (amount > 0) {
-      setAmount(amount - step);
+    const count = order[food.id] ? order[food.id].amount : 0;
+    if (count > 0) {
+      updateOrder(step*-1);
     }
   };
 
-  useEffect(() => {
+  const updateOrder = (step) => {
     if(!order[food.id]) {
-      order[food.id] = {
-        amount: 0,
-        name: "",
-        price: 0,
-      }
+      order[food.id] = {}
     }
-    order.totalAmount = order.totalAmount + amount;
-    order[food.id]['amount'] = amount;
+    order.totalAmount = order.totalAmount + step;
+    order[food.id]['amount'] = amount + step;
     order[food.id]['name'] = food.name;
     order[food.id]['price'] = food.price;
-  }, [amount]);
+    setAmount(order[food.id].amount);
+  };
+
 
   return (
     <motion.div

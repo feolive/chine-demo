@@ -2,14 +2,17 @@ import { useState, useEffect } from "react";
 import { MenuItem } from "./MenuItem";
 import { motion, AnimatePresence } from "framer-motion";
 
-export const Menu = ({ dishes, order, updateTotalAmount }) => {
-  // const [order, setOrder] = useState(order);
-  // const [foodData, setFoodData] = useState(dishes);
-  const [selectedTab, setSelectedTab] = useState(dishes[0]);
+export const Menu = ({ dishes, selIdx, setSelIdx , order, updateTotalAmount }) => {
+  const [selectedTab, setSelectedTab] = useState(dishes[selIdx]);
 
   useEffect(() => {
     updateTotalAmount(order.totalAmount);
   }, [order.totalAmount]);
+
+  const changeTab = (item,index) => {
+    setSelectedTab(item);
+    setSelIdx(index);
+  };
 
   return (
     <AnimatePresence mode="wait">
@@ -22,11 +25,11 @@ export const Menu = ({ dishes, order, updateTotalAmount }) => {
         <div className="w-[400px] sm:w-full flex justify-start gap-3 relative mx-auto">
           <nav className="w-28 mt-8 scroll-bar">
             <ul className="flex flex-col justify-start list-none">
-              {dishes.map((item) => (
+              {dishes.map((item,index) => (
                 <li
                   className="rounded-lg bg-gray-300"
                   key={item.id}
-                  onClick={() => setSelectedTab(item)}
+                  onClick={() => changeTab(item,index)}
                 >
                   {item.icon} {item.category}
                 </li>

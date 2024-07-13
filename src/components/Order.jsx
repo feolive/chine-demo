@@ -5,13 +5,6 @@ import { InvitationModal } from "./InvitationModal";
 import { Menu } from "./Menu";
 import { Cart } from "./Cart";
 
-const pricingData = [
-  "Seamless integration",
-  "Real-time data visualization",
-  "Advanced predictive analytics",
-  "Collaborative environment",
-  "Responsive customer support",
-];
 
 const newOrder = {
   totalAmount: 0,
@@ -22,17 +15,17 @@ const newOrder = {
   },
   2 : {
     amount: 0,
-    name: "",
+    name: "Spicy Beef Noodles (麻辣牛肉面)",
     price: 0,
   },
   3 : {
     amount: 0,
-    name: "ceshi",
+    name: "Chicken Noodles (红烧鸡肉面)",
     price: 9.9,
   },
   5 : {
     amount: 0,
-    name: "",
+    name: "Vegetable Noodles (素面)",
     price: 0,
   },
   1 : {
@@ -165,6 +158,7 @@ export const Order = () => {
   const [isMonthly, setIsMonthly] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newDishNum, setNewDishNum] = useState(()=>{newOrder.totalAmount?newOrder.totalAmount:0});
+  const [menuIdx, setMenuIdx] = useState(0);
 
   const handleChange = () => {
     setIsMonthly(!isMonthly);
@@ -173,6 +167,8 @@ export const Order = () => {
   const countNewOrder = useCallback((total) => { 
     setNewDishNum(total);
   }, [newDishNum]);
+
+  
 
   return (
     <section className="w-screen flex justify-center bg-bgDark2 relative">
@@ -214,7 +210,7 @@ export const Order = () => {
               </label>
             </div>
             {
-              isMonthly ? (<Menu dishes={dishes} order={newOrder} updateTotalAmount={countNewOrder} />) : 
+              isMonthly ? (<Menu dishes={dishes} selIdx={menuIdx} setSelIdx={setMenuIdx} order={newOrder} updateTotalAmount={countNewOrder} />) : 
                 (<Cart order={newOrder} updateTotalAmount={countNewOrder} />)
             }
           </div>

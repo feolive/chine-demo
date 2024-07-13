@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MinusIcon } from "../assets/icons/MinusIcon";
 import { PlusIcon } from "../assets/icons/PlusIcon";
@@ -31,6 +31,7 @@ export const Cart = ({ order, updateTotalAmount }) => {
     setItems(items);
   };
 
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -51,7 +52,7 @@ export const Cart = ({ order, updateTotalAmount }) => {
             Submit
           </button>
         </div>
-        <div className="w-[400px] sm:w-[480px] flex flex-col justify-start gap-3 mx-auto overflow-auto">
+        <div className="w-[400px] sm:w-[480px] h-[560px] flex flex-col justify-start gap-3 mx-auto scroll-bar sm:overscroll-contain">
           {Object.keys(items).map((key) => {
             if (key === "totalAmount") {
               return null;
@@ -88,7 +89,7 @@ export const Cart = ({ order, updateTotalAmount }) => {
                 >
                   <PlusIcon />
                 </motion.div>
-                <p className="text-primaryText text-left ml-8 mr-4 w-100px]">
+                <p className="text-primaryText text-left ml-6 w-100px]">
                   = ${items[key].price * items[key].amount}
                 </p>
               </div>

@@ -33,6 +33,7 @@ export const Card = ({ food, order }) => {
 
   return (
     <motion.div
+      key={food.id}
       initial={{ rotate: -10 }}
       whileInView={{
         rotate: 0,
@@ -43,7 +44,7 @@ export const Card = ({ food, order }) => {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         whileHover={{ scale: 1.1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <div className="w-[250px] sm:w-[300px] h-auto px-2 mt-4 flex flex-col justify-start content-center gap-3 bg-bgDark3 rounded-3xl">
           <div className="flex flex-col justify-start gap-3 items-center mt-6">

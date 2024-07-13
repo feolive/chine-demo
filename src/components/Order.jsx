@@ -164,9 +164,9 @@ export const Order = () => {
     setIsMonthly(!isMonthly);
   };
 
-  const countNewOrder = useCallback((total) => { 
+  const countNewOrder = (total) => { 
     setNewDishNum(total);
-  }, [newDishNum]);
+  };
 
   
 

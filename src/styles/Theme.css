@@ -90,17 +90,26 @@
   background-color: transparent;
 }
 
-
 /* tabs */
 .nav-tabs {
-  @apply list-none
+  @apply w-28 mt-8 scroll-bar sm:overscroll-contain list-none
 }
 
-.nav-tabs>li {
-  @apply bg-transparent
+.nav-tabs ul {
+  @apply flex flex-col gap-1 justify-start list-none 
 }
 
-.nav-tabs>li.selected {
-  @apply bg-secondaryText
+.nav-tabs li {
+  @apply h-10 p-2 bg-bgDark3Hover text-primaryText font-Inter rounded-md cursor-pointer
 }
 
+.nav-tabs li.selected {
+  @apply bg-primaryText text-secondaryColor
+}
+
+.underline {
+  @apply relative bg-secondaryColor h-10;
+  bottom: -2px;
+  left: 0;
+  height: 3px;
+}

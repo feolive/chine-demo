@@ -9,7 +9,7 @@ export const Menu = ({ dishes, selIdx, setSelIdx , order, updateTotalAmount }) =
     updateTotalAmount(order.totalAmount);
   }, [order.totalAmount]);
 
-  const changeTab = (item,index) => {
+  const changeTab =(item,index) => {
     setSelectedTab(item);
     setSelIdx(index);
   };
@@ -23,15 +23,18 @@ export const Menu = ({ dishes, selIdx, setSelIdx , order, updateTotalAmount }) =
         transition={{ duration: 0.5 }}
       >
         <div className="w-[400px] sm:w-full flex justify-start gap-3 relative mx-auto">
-          <nav className="w-28 mt-8 scroll-bar">
-            <ul className="flex flex-col justify-start list-none">
+          <nav className="nav-tabs">
+            <ul>
               {dishes.map((item,index) => (
                 <li
-                  className="rounded-lg bg-gray-300"
+                className={item === selectedTab ? "selected" : ""}
                   key={item.id}
                   onClick={() => changeTab(item,index)}
                 >
                   {item.icon} {item.category}
+                  {item === selectedTab ? (
+                <motion.div className="underline" layoutId="underline" />
+                ) : null}
                 </li>
               ))}
             </ul>

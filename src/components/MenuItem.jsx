@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "./Card";
 
 export const MenuItem = ({ selectedTab, order }) => {
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -11,7 +12,8 @@ export const MenuItem = ({ selectedTab, order }) => {
         exit={{ y: -10, opacity: 0 }}
         transition={{ duration: 0.2 }}
       >
-        <section className="h-[500px] grid grid-cols-3 gap-5 px-6 scroll-bar">
+        <div id="scroll-b" className="scroll-block" />
+        <section id="menu-item" className="h-[500px] grid grid-cols-3 gap-5 px-6 scroll-bar sm:overscroll-contain" >
           {selectedTab["data"].map((food) => (
             <Card food={food} order={order} />
           ))}

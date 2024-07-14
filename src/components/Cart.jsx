@@ -2,6 +2,7 @@ import { useState,useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MinusIcon } from "../assets/icons/MinusIcon";
 import { PlusIcon } from "../assets/icons/PlusIcon";
+import { CartItem } from "./CartItem";
 
 export const Cart = ({ order, updateTotalAmount }) => {
   const [items, setItems] = useState(order);
@@ -58,41 +59,9 @@ export const Cart = ({ order, updateTotalAmount }) => {
               return null;
             }
             return (
-              <div
-                key={key}
-                className="flex justify-start items-center outline-none p-3 rounded-lg border-bgDark3 bg-bgDark3 hover:bg-bgDark3Hover"
-              >
-                <p className="text-primaryText text-left ml-4 mr-20 w-[90px] sm:w-[150px]">
-                  {items[key].name} / ${items[key].price}
-                </p>
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ duration: 0.2 }}
-                  onClick={() => reduceItem(key)}
-                >
-                  <MinusIcon />
-                </motion.div>
-                <input
-                  className="w-12 mx-1 text-center outline-none border bg-gray-200 border-gray-200 rounded-sm z-50"
-                  value={items[key].amount}
-                  type="text"
-                  readOnly
-                />
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ duration: 0.2 }}
-                  onClick={() => increaseItem(key)}
-                >
-                  <PlusIcon />
-                </motion.div>
-                <p className="text-primaryText text-left ml-6 w-100px]">
-                  = ${items[key].price * items[key].amount}
-                </p>
-              </div>
+              <CartItem
+                item={items[key]}
+              />
             );
           })}
         </div>

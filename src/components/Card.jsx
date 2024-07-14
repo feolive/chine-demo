@@ -70,7 +70,7 @@ export const Card = ({ food, order }) => {
             </motion.div>
             <input
               className="w-14 h-6 mx-1 text-center outline-none border bg-gray-200 border-gray-200 rounded-sm"
-              value={amount}
+              value={amount<=0?0:amount}
               type="text"
               readOnly
             />

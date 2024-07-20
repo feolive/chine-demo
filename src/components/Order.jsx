@@ -1,35 +1,38 @@
-import { useState, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import { InvitationModal } from "./InvitationModal";
 import { Menu } from "./Menu";
 import { Cart } from "./Cart";
+import { NotificationBubble } from "./NotificationBubble";
+import { coke,sprite,orangeJuice,borsch,malaxiangguo,hongshaojirou,hongshaoniurou,malajirou,malaniurou,sumian } from "../assets/images";
 
 
+const emptyOrder = {};
 const newOrder = {
-  totalAmount: 0,
+  totalAmount: 10,
   10 : {
     amount: 1,
     name: "Spicy Pot (麻辣香锅)",
     price: 24.99,
   },
   2 : {
-    amount: 0,
+    amount: 1,
     name: "Spicy Beef Noodles (麻辣牛肉面)",
     price: 0,
   },
   3 : {
-    amount: 0,
+    amount: 1,
     name: "Chicken Noodles (红烧鸡肉面)",
     price: 9.9,
   },
   5 : {
-    amount: 0,
+    amount: 1,
     name: "Vegetable Noodles (素面)",
     price: 0,
   },
   1 : {
-    amount: 1,
+    amount: 2,
     name: "Beef Noodles (红烧牛肉面)",
     price: 10,
   },
@@ -59,7 +62,7 @@ const dishes = [
       {
         id: 1,
         name: "Beef Noodles (红烧牛肉面)",
-        src: "https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b",
+        src: hongshaoniurou.src,
         price: "10.99",
         desc: "Beef Noodles is a traditional Chinese dish made with beef, vegetables, and noodles. The beef is marinated and cooked with the vegetables and noodles to create a flavorful and satisfying meal.",
         rate: "5",
@@ -67,7 +70,7 @@ const dishes = [
       {
         id: 2,
         name: "Spicy Beef Noodles (麻辣牛肉面)",
-        src: "https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b",
+        src: malaniurou.src,
         price: "11.99",
         desc: "Spicy Beef Noodles is a popular Chinese dish made with beef, vegetables, and noodles. The beef is marinated in a spicy sauce and cooked with the vegetables and noodles to create a delicious and spicy meal.",
         rate: "4.5",
@@ -75,7 +78,7 @@ const dishes = [
       {
         id: 3,
         name: "Chicken Noodles (红烧鸡肉面)",
-        src: "https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b",
+        src: hongshaojirou.src,
         price: "9.99",
         desc: "Chicken Noodles is a classic Chinese dish made with chicken, vegetables, and noodles. The chicken is marinated and cooked with the vegetables and noodles to create a flavorful and satisfying meal.",
         rate: "4",
@@ -83,7 +86,7 @@ const dishes = [
       {
         id: 4,
         name: "Spicy Chicken Noodles (麻辣鸡肉面)",
-        src: "https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b",
+        src: malajirou.src,
         price: "10.99",
         desc: "Spicy Chicken Noodles is a popular Chinese dish made with chicken, vegetables, and noodles. The chicken is marinated in a spicy sauce and cooked with the vegetables and noodles to create a delicious and spicy meal.",
         rate: "4.5",
@@ -91,7 +94,7 @@ const dishes = [
       {
         id: 5,
         name: "Vegetable Noodles (素面)",
-        src: "https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b",
+        src: sumian.src,
         price: "8.99",
         desc: "Vegetable Noodles is a healthy and delicious Chinese dish made with a variety of vegetables and noodles. The vegetables are cooked with the noodles to create a flavorful and satisfying meal.",
         rate: "4",
@@ -106,7 +109,7 @@ const dishes = [
       {
         id: 10,
         name: "Spicy Pot (麻辣香锅)",
-        src: "https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b",
+        src: malaxiangguo.src,
         price: "15.99",
         desc: "Hot and Spicy Pot is savory and spicy with a numbing sensation.",
         rate: "5",
@@ -114,7 +117,7 @@ const dishes = [
       {
         id: 9,
         name: "Borsch (罗宋汤)",
-        src: "https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b",
+        src: borsch.src,
         price: "11.99",
         desc: "Borsch is a traditional Russian soup made with beets, cabbage, and potatoes. It is hearty, flavorful, and perfect for a cold day.",
         rate: "5",
@@ -129,7 +132,7 @@ const dishes = [
       {
         id: 6,
         name: "Coke (可乐)",
-        src: "https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b",
+        src: coke.src,
         price: "1.99",
         desc: "Coke Cola",
         rate: "5",
@@ -137,7 +140,7 @@ const dishes = [
       {
         id: 7,
         name: "Sprite (雪碧)",
-        src: "https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b",
+        src: sprite.src,
         price: "1.99",
         desc: "Sprite.",
         rate: "4.5",
@@ -145,7 +148,7 @@ const dishes = [
       {
         id: 8,
         name: "Orange Juice (橙汁)",
-        src: "https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b",
+        src: orangeJuice.src,
         price: "6.99",
         desc: "100% Orange Juice.",
         rate: "4",
@@ -154,10 +157,11 @@ const dishes = [
   },
 ];
 
+
 export const Order = () => {
   const [isMonthly, setIsMonthly] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newDishNum, setNewDishNum] = useState(()=>{newOrder.totalAmount?newOrder.totalAmount:0});
+  const [newDishNum, setNewDishNum] = useState(0);
   const [menuIdx, setMenuIdx] = useState(0);
 
   const handleChange = () => {
@@ -205,13 +209,16 @@ export const Order = () => {
                   >
                     Menu
                   </div>
-                  <div className={isMonthly ? "text-gray-400" : ""}>Cart</div>
+                  <div className={isMonthly ? "text-gray-400" : ""}>Cart
+                    
+                  </div>
+                  <NotificationBubble num={newDishNum} />
                 </div>
               </label>
             </div>
             {
-              isMonthly ? (<Menu dishes={dishes} selIdx={menuIdx} setSelIdx={setMenuIdx} order={newOrder} updateTotalAmount={countNewOrder} />) : 
-                (<Cart order={newOrder} updateTotalAmount={countNewOrder} />)
+              isMonthly ? (<Menu dishes={dishes} selIdx={menuIdx} setSelIdx={setMenuIdx} order={emptyOrder} updateTotalAmount={countNewOrder} />) : 
+                (<Cart order={emptyOrder} updateTotalAmount={countNewOrder} />)
             }
           </div>
         </motion.div>

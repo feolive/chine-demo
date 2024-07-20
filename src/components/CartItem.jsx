@@ -3,7 +3,7 @@ import { MinusIcon } from "../assets/icons/MinusIcon";
 import { PlusIcon } from "../assets/icons/PlusIcon";
 import { motion } from "framer-motion";
 
-export const CartItem = ({ item, updateTotalAmount }) => {
+export const CartItem = ({ item, refreshTotalAmount }) => {
 
     const [num, setNum] = useState(item.amount);
 
@@ -16,11 +16,13 @@ export const CartItem = ({ item, updateTotalAmount }) => {
         }
         item.amount = item.amount - 1;
         setNum(item.amount);
+        refreshTotalAmount(-1);
       };
     
       const increaseItem = () => {
         item.amount = item.amount + 1;
         setNum(item.amount);
+        refreshTotalAmount(1);
       };
 
 
@@ -43,7 +45,7 @@ export const CartItem = ({ item, updateTotalAmount }) => {
         <MinusIcon />
       </motion.div>
       <input
-        className="w-12 mx-1 text-center outline-none border bg-gray-200 border-gray-200 rounded-sm z-50"
+        className="w-12 mx-1 text-center outline-none border bg-gray-200 border-gray-200 rounded-sm z-50 text-primaryText border-none bg-transparent"
         value={num}
         type="text"
         readOnly

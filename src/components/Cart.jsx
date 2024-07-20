@@ -7,30 +7,21 @@ import { CartItem } from "./CartItem";
 export const Cart = ({ order, updateTotalAmount }) => {
   const [items, setItems] = useState(order);
 
-  const reduceItem = (key) => {
-    if (items[key].amount === 0) {
-      let text = "Do you want to remove this item?";
-      if (confirm(text) == true) {
-        delete items[key];
-        updateTotalAmount(items.totalAmount);
-        setItems(items);
-        return;
-      } else {
-        return;
-      }
+  const refreshTotalAmount = (num) => {
+    let newAmount = order.totalAmount + num;
+    if(newAmount < 0) {
+      return;
     }
-    items[key].amount = items[key].amount - 1;
-    items.totalAmount = items.totalAmount - 1;
-    updateTotalAmount(items.totalAmount);
-    setItems(items);
+    order.totalAmount = newAmount;
+    updateTotalAmount(order.totalAmount);
   };
 
-  const increaseItem = (key) => {
-    items[key].amount = items[key].amount + 1;
-    items.totalAmount = items.totalAmount + 1;
-    updateTotalAmount(items.totalAmount);
-    setItems(items);
-  };
+  useEffect(() => {
+    if(order?.totalAmount === 'undefined') {
+      order.totalAmount = 0;
+      updateTotalAmount(0);
+    }
+  }, []);
 
 
   return (
@@ -60,7 +51,7 @@ export const Cart = ({ order, updateTotalAmount }) => {
             }
             return (
               <CartItem
-                item={items[key]}
+                item={items[key]} refreshTotalAmount={refreshTotalAmount}
               />
             );
           })}

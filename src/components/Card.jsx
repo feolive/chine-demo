@@ -46,9 +46,9 @@ export const Card = ({ food, order }) => {
         whileHover={{ scale: 1.1 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="w-[250px] sm:w-[300px] h-auto px-2 mt-4 flex flex-col justify-start content-center gap-3 bg-bgDark3 rounded-3xl">
+        <div className="w-[250px] sm:w-[300px] h-auto px-2 mt-7 flex flex-col justify-start content-center gap-3 bg-bgDark3 rounded-3xl">
           <div className="flex flex-col justify-start gap-3 items-center mt-6">
-            <img className="h-10 w-10 sm:h-28 sm:w-28 mb-2" src={food.src} />
+            <img className="h-14 w-14 sm:h-28 sm:w-28 mb-2 rounded-3xl object-cover object-center" src={food.src} />
             <label className="text-primaryText text-left">{food.name} </label>
             <p className="w-[220px] h-[120px] mt-2 mb-6 2xl:mb-10 text-sm text-gray-500 leading-loose text-left overflow-hidden">
               {food.desc}
@@ -69,7 +69,7 @@ export const Card = ({ food, order }) => {
               <MinusIcon />
             </motion.div>
             <input
-              className="w-14 h-6 mx-1 text-center outline-none border bg-gray-200 border-gray-200 rounded-sm"
+              className="w-14 h-10 mx-1 text-center outline-none border-none bg-transparent text-primaryText font-bold"
               value={amount<=0?0:amount}
               type="text"
               readOnly

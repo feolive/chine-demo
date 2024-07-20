@@ -6,7 +6,7 @@ export const Menu = ({ dishes, selIdx, setSelIdx , order, updateTotalAmount }) =
   const [selectedTab, setSelectedTab] = useState(dishes[selIdx]);
 
   useEffect(() => {
-    updateTotalAmount(order.totalAmount);
+    updateTotalAmount(order.totalAmount?order.totalAmount:0);
   }, [order.totalAmount]);
 
   const changeTab =(item,index) => {

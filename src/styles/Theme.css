@@ -19,7 +19,6 @@
   @apply text-gray-400 text-base;
 }
 
-
 /* Borders */
 
 .main-border-gray {
@@ -45,7 +44,7 @@
 
 /* spotlight the background image */
 .hero-bg-image {
-  @apply bg-hotpot bg-cover bg-center bg-no-repeat ;
+  @apply bg-hotpot bg-cover bg-center bg-no-repeat;
 }
 
 .hero-bg-shade {
@@ -53,17 +52,20 @@
 }
 
 .hero-bg-spotlight {
-  
   @apply w-32 h-32  rounded-full mix-blend-lighten pointer-events-none;
   position: absolute;
   top: 0;
   left: 0;
-  background: radial-gradient(circle at var(--x) var(--y), yellow 10%, white 80%);
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    yellow 10%,
+    white 80%
+  );
 }
 
 /* scroll bar */
-.scroll-bar{
-  @apply overflow-auto
+.scroll-bar {
+  @apply overflow-auto;
 }
 
 /* 隐藏默认滚动条 */
@@ -92,19 +94,19 @@
 
 /* tabs */
 .nav-tabs {
-  @apply w-28 mt-8 scroll-bar sm:overscroll-contain list-none
+  @apply w-28 mt-8 scroll-bar sm:overscroll-contain list-none;
 }
 
 .nav-tabs ul {
-  @apply flex flex-col gap-1 justify-start list-none 
+  @apply flex flex-col gap-1 justify-start list-none;
 }
 
 .nav-tabs li {
-  @apply h-10 p-2 bg-bgDark3Hover text-primaryText font-Inter rounded-md cursor-pointer
+  @apply h-10 p-2 bg-bgDark3Hover text-primaryText font-Inter rounded-md cursor-pointer;
 }
 
 .nav-tabs li.selected {
-  @apply bg-primaryText font-bold text-primaryColor
+  @apply bg-primaryText font-bold text-primaryColor;
 }
 
 .underline {
@@ -112,4 +114,43 @@
   bottom: -2px;
   left: 0;
   height: 3px;
+}
+
+.card-frame {
+  @apply w-[250px] sm:w-[300px] h-auto px-2 mt-7 flex flex-col justify-start content-center gap-3 bg-bgDark3 rounded-3xl;
+}
+
+.card-frame:hover::before {
+  @apply rounded-3xl;
+  content: "";
+  position: absolute;
+  top: -4.5px;
+  left: -4.5px;
+  right: -4.5px;
+  bottom: -4.5px;
+  background: linear-gradient(
+    45deg,
+    red,
+    yellow,
+    green,
+    cyan,
+    blue,
+    violet,
+    red
+  );
+  z-index: -1;
+  background-size: 200% 200%;
+  animation: gradient-border-animation 2s linear infinite;
+}
+
+@keyframes gradient-border-animation {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
 }

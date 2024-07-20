@@ -46,7 +46,7 @@ export const Card = ({ food, order }) => {
         whileHover={{ scale: 1.1 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="w-[250px] sm:w-[300px] h-auto px-2 mt-7 flex flex-col justify-start content-center gap-3 bg-bgDark3 rounded-3xl">
+        <div className="card-frame">
           <div className="flex flex-col justify-start gap-3 items-center mt-6">
             <img className="h-14 w-14 sm:h-28 sm:w-28 mb-2 rounded-3xl object-cover object-center" src={food.src} />
             <label className="text-primaryText text-left">{food.name} </label>

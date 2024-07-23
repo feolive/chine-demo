@@ -5,10 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 export const Menu = ({ dishes, selIdx, setSelIdx , order, updateTotalAmount }) => {
   const [selectedTab, setSelectedTab] = useState(dishes[selIdx]);
 
-  useEffect(() => {
-    updateTotalAmount(order.totalAmount?order.totalAmount:0);
-  }, [order.totalAmount]);
-
   const changeTab =(item,index) => {
     setSelectedTab(item);
     setSelIdx(index);
@@ -39,7 +35,7 @@ export const Menu = ({ dishes, selIdx, setSelIdx , order, updateTotalAmount }) =
               ))}
             </ul>
           </nav>
-          <MenuItem selectedTab={selectedTab} order={order} />
+          <MenuItem selectedTab={selectedTab} order={order} updateTotalAmount={updateTotalAmount}/>
         </div>
       </motion.div>
     </AnimatePresence>

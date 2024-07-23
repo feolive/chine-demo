@@ -117,17 +117,12 @@
 }
 
 .card-frame {
-  @apply w-[250px] sm:w-[300px] h-auto px-2 mt-7 flex flex-col justify-start content-center gap-3 bg-bgDark3 rounded-3xl;
+  @apply 2xl:w-[300px] h-auto px-2 mt-7 flex flex-col justify-start content-center gap-3 bg-bgDark3 rounded-3xl;
 }
 
 .card-frame:hover::before {
-  @apply rounded-3xl;
+  @apply rounded-3xl absolute -inset-1;
   content: "";
-  position: absolute;
-  top: -4.5px;
-  left: -4.5px;
-  right: -4.5px;
-  bottom: -4.5px;
   background: linear-gradient(
     45deg,
     red,

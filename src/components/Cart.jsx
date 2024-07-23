@@ -1,7 +1,5 @@
 import { useState,useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MinusIcon } from "../assets/icons/MinusIcon";
-import { PlusIcon } from "../assets/icons/PlusIcon";
 import { CartItem } from "./CartItem";
 
 export const Cart = ({ order, updateTotalAmount }) => {
@@ -13,16 +11,20 @@ export const Cart = ({ order, updateTotalAmount }) => {
       return;
     }
     order.totalAmount = newAmount;
-    updateTotalAmount(order.totalAmount);
+    updateTotalAmount(newAmount);
   };
 
   useEffect(() => {
-    if(order?.totalAmount === 'undefined') {
+    if(order?.totalAmount === undefined) {
       order.totalAmount = 0;
       updateTotalAmount(0);
     }
   }, []);
 
+  const clearData = () => {
+    setItems({});
+    updateTotalAmount(0);
+  }
 
   return (
     <AnimatePresence mode="wait">
@@ -40,6 +42,7 @@ export const Cart = ({ order, updateTotalAmount }) => {
           <button
             className="w-16 h-8 contained-button ml-8"
             aria-label="submit new order"
+            onClick={clearData}
           >
             Submit
           </button>

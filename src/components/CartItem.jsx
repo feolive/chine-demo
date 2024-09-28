@@ -1,19 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MinusIcon } from "../assets/icons/MinusIcon";
 import { PlusIcon } from "../assets/icons/PlusIcon";
+import { DeleteIcon } from "../assets/icons/DeleteIcon";
 import { motion } from "framer-motion";
 
 export const CartItem = ({ item, refreshTotalAmount }) => {
   const [num, setNum] = useState(item.amount);
 
   const reduceItem = () => {
-    if (item.amount === 0) {
-      let text = "Do you want to remove this item?";
-      if (!confirm(text)) {
-        return;
-      }
-    }
     item.amount = item.amount - 1;
+    if (item.amount === 0) {
+      let element = document.getElementById(item.name);
+      element.style.pointerEvents = "none";
+      element.style.opacity = "0.5";
+      element.style.cursor = "not-allowed";
+    }
     setNum(item.amount);
     refreshTotalAmount(-1);
   };
@@ -21,22 +22,34 @@ export const CartItem = ({ item, refreshTotalAmount }) => {
   const increaseItem = () => {
     item.amount = item.amount + 1;
     setNum(item.amount);
+    if (item.amount > 0) {
+      let element = document.getElementById(item.name);
+      element.style.pointerEvents = "auto";
+      element.style.opacity = "1";
+      element.style.cursor = "auto";
+    }
     refreshTotalAmount(1);
   };
 
-  useEffect(() => {
-    
-  }, []);
+  const deleteItem = () => {
+    let text = "Do you want to remove this item?";
+    if (confirm(text)) {
+      refreshTotalAmount(-1*item.amount);
+      item.amount = 0;
+      item.show = false;
+    }
+  };
 
-  return item.amount < 0 ? null : (
+  return (
     <div
       key={item.name}
       className="flex justify-start items-center outline-none p-3 rounded-lg border-bgDark3 bg-bgDark3 hover:bg-bgDark3Hover"
     >
-      <p className="text-primaryText text-left ml-4 mr-20 w-[90px] sm:w-[150px]">
+      <p className="text-primaryText text-left ml-4 mr-14 w-[90px] sm:w-[150px]">
         {item.name} / ${item.price}
       </p>
       <motion.div
+        id={item.name}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         whileHover={{ scale: 1.2 }}
@@ -60,9 +73,18 @@ export const CartItem = ({ item, refreshTotalAmount }) => {
       >
         <PlusIcon />
       </motion.div>
-      <p className="text-primaryText text-left ml-6 w-100px]">
+      <p className="text-primaryText text-left mx-5 w-100px]">
         = ${item.price * item.amount}
       </p>
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        whileHover={{ scale: 1.2 }}
+        transition={{ duration: 0.2 }}
+        onClick={()=> deleteItem()}
+      >
+        <DeleteIcon />
+      </motion.div>
     </div>
   );
 };

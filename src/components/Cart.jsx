@@ -21,11 +21,6 @@ export const Cart = ({ order, updateTotalAmount }) => {
     }
   }, []);
 
-  const clearData = () => {
-    setItems({});
-    updateTotalAmount(0);
-  }
-
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -42,7 +37,6 @@ export const Cart = ({ order, updateTotalAmount }) => {
           <button
             className="w-16 h-8 contained-button ml-8"
             aria-label="submit new order"
-            onClick={clearData}
           >
             Submit
           </button>
@@ -52,7 +46,7 @@ export const Cart = ({ order, updateTotalAmount }) => {
             if (key === "totalAmount") {
               return null;
             }
-            return (
+            return !items[key].show?null : (
               <CartItem
                 item={items[key]} refreshTotalAmount={refreshTotalAmount}
               />

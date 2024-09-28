@@ -10,12 +10,19 @@ export const Card = ({ food, order, updateTotalAmount }) => {
 
   const increaseAmount = (step) => {
     updateOrder(step);
+    const count = order[food.id] ? order[food.id].amount : 0;
+    if (count >= 0) {
+      order[food.id]['show'] = true;
+    }
   };
 
   const decreaseAmount = (step) => {
     const count = order[food.id] ? order[food.id].amount : 0;
     if (count > 0) {
       updateOrder(step*-1);
+    }
+    if (count === 0) {
+      order[food.id]['show'] = false;
     }
   };
 
